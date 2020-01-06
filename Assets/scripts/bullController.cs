@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class bullController : genericEnemyController
 {
-
     // Start is called before the first frame update
     new void Start()
     {
@@ -14,11 +13,23 @@ public class bullController : genericEnemyController
     // Update is called once per frame
     new void Update()
     {
-        if(!sawPlayer)
+        base.Update();
+        if (!sawPlayer)
         {
-            FollowPath();
             CheckLineOfSight();
+            FollowPath();
         }
-        
+        else
+        {
+            transform.LookAt(player.transform);
+            if(speed < maxSpeed)
+            {
+                speed += accel;
+                if (speed > maxSpeed)
+                    speed = maxSpeed;
+            }
+            transform.position += transform.forward * speed * Time.deltaTime;
+        }
+        base.Update();
     }
 }

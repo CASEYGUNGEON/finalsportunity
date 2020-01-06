@@ -4,20 +4,24 @@ using UnityEngine;
 
 public class genericEnemyController : MonoBehaviour
 {
-    private GameObject player;
+    public playerController player;
     public bool sawPlayer = false;
+    public float sightDist;
+    public float sightAngle;
+    public float accel;
     public float speed;
+    public float maxSpeed;
     public float gravity;
     public Vector3[] patrolPointList;
     protected int nextPoint;
     protected Vector3 moveDirection;
     protected float moveX;
     protected float moveZ;
+    protected float angleDiff;
 
     // Start is called before the first frame update
     protected void Start()
     {
-        player = GameObject.Find("railunity");
         transform.position = patrolPointList[0];
         nextPoint = 1;
     }
@@ -25,7 +29,7 @@ public class genericEnemyController : MonoBehaviour
     // Update is called once per frame
     protected void Update()
     {
-        
+        transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
     }
 
     protected void FollowPath()
@@ -62,6 +66,13 @@ public class genericEnemyController : MonoBehaviour
 
     protected void CheckLineOfSight()
     {
-        sawPlayer = Mathf.Abs(Mathf.DeltaAngle(transform.eulerAngles.y, Vector3.Angle(transform.position,player.transform.position))) < 60;
+        Vector3 toOther = (transform.position - player.transform.position).normalized;
+        angleDiff = Vector3.Angle(transform.forward*-1,toOther);
+        sawPlayer = angleDiff < sightAngle && Vector3.Distance(transform.position,player.transform.position) < sightDist;
+    }
+
+    protected void HurtPlayer()
+    {
+        player.TakeDamage();
     }
 }
