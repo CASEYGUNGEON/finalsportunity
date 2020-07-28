@@ -19,6 +19,7 @@ public class genericEnemyController : MonoBehaviour
     protected float moveZ;
     protected float angleDiff;
 
+
     // Start is called before the first frame update
     protected void Start()
     {
