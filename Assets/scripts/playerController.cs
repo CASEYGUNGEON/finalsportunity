@@ -154,5 +154,6 @@ public class playerController : PlayerBehavior
         {
             transform.position = spawn2.transform.position;
         }
+        networkObject.position = transform.position;
     }
 }
