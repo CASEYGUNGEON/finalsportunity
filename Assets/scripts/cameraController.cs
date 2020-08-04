@@ -5,7 +5,7 @@ using UnityEngine;
 public class cameraController : MonoBehaviour
 {
     public Vector3 offset;
-    public GameObject player;
+    public playerController player;
     private Camera cam;
     private Plane plane;
 

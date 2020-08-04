@@ -155,7 +155,7 @@ GameObject:
   - component: {fileID: 2714680546228628517}
   - component: {fileID: 2714680546228628515}
   m_Layer: 0
-  m_Name: railunity (1)
+  m_Name: railunity
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -242,5 +242,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 16
   gravity: 10
+  camPrefab: {fileID: 6408528135901154723, guid: 475d510f3cf19f34ca63c51d75385399,
+    type: 3}
   cam: {fileID: 0}
   attackHitbox: {fileID: 2714680546375780844}
+  spawn1: {fileID: 123355268998445477, guid: 2816df2970db6b842a1cee03018c9ccd, type: 3}
+  spawn2: {fileID: 7794270984090704788, guid: e9d87dcb8e040d14aa7c476e62f5359e, type: 3}

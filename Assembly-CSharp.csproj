@@ -234,6 +234,7 @@
      <Compile Include="Assets\imported\Bearded Man Studios Inc\Generated\NetworkObjectFactory.cs" />
      <Compile Include="Assets\imported\Bearded Man Studios Inc\Scripts\Networking\Forge\Networking\UDPGroupIds.cs" />
      <Compile Include="Assets\imported\SampleScenes\Scripts\PlaceTargetWithMouse.cs" />
+     <Compile Include="Assets\LogicManager.cs" />
      <Compile Include="Assets\imported\Standard Assets\Vehicles\Aircraft\Scripts\AeroplaneControlSurfaceAnimator.cs" />
      <Compile Include="Assets\imported\Standard Assets\Vehicles\Car\Scripts\CarAudio.cs" />
      <Compile Include="Assets\imported\Bearded Man Studios Inc\Scripts\Networking\Forge\Networking\Frame\Factory.cs" />
@@ -290,7 +291,6 @@
      <Compile Include="Assets\imported\Standard Assets\2D\Scripts\PlatformerCharacter2D.cs" />
      <Compile Include="Assets\imported\Bearded Man Studios Inc\Scripts\Multiplayer Menu\MultiplayerMenu.cs" />
      <Compile Include="Assets\imported\Standard Assets\Utility\AutoMobileShaderSwitch.cs" />
-     <Compile Include="Assets\LogicManager.cs" />
      <None Include="Assets\imported\Standard Assets\Prototyping\Shaders\WorldCoordDiffuse.shader" />
      <None Include="Assets\imported\Standard Assets\Effects\Projectors\Shaders\ProjectorLight.shader" />
      <None Include="Assets\imported\Standard Assets\Effects\Projectors\Shaders\ProjectorMultiply.shader" />

@@ -8,10 +8,13 @@ using UnityEngine.UI;
 
 public class LogicManager : MonoBehaviour
 {
+    public cameraController cam;
+    public playerController playerPrefab;
+
     // Start is called before the first frame update
     void Start()
     {
-        NetworkManager.Instance.InstantiatePlayer(position: new Vector3(0, 5, 0));
+        NetworkManager.Instance.InstantiatePlayer(position: new Vector3(0,0,0));
     }
 
     // Update is called once per frame

@@ -10,6 +10,7 @@ public class playerController : PlayerBehavior
 {
     public float speed;
     public float gravity;
+    public cameraController camPrefab;
     public cameraController cam;
     private Vector3 moveDirection;
     private CharacterController charCon;
@@ -21,6 +22,9 @@ public class playerController : PlayerBehavior
     private bool attacking;
     private CapsuleCollider bodyCollider;
     public HitboxController attackHitbox;
+
+    public GameObject spawn1;
+    public GameObject spawn2;
 
     private static bool freeze;
 
@@ -41,6 +45,11 @@ public class playerController : PlayerBehavior
         bodyCollider = GetComponent<CapsuleCollider>();
         Application.targetFrameRate = 30;
         QualitySettings.vSyncCount = 0;
+        cam = Instantiate(camPrefab);
+        cam.player = this;
+        spawn1 = GameObject.Find("spawn1");
+        spawn2 = GameObject.Find("spawn2");
+        transform.position = spawn1.transform.position;
         //var dialogue = DialogueManager.Talk();
         //dialogue.AddString("Welcome to video games lol");
     }
@@ -135,6 +144,15 @@ public class playerController : PlayerBehavior
         {
             GetComponent<playerController>().enabled = false;
             Destroy(GetComponent<Rigidbody>());
+        }
+
+        if(networkObject.IsServer)
+        {
+            transform.position = spawn1.transform.position;
+        }
+        else
+        {
+            transform.position = spawn2.transform.position;
         }
     }
 }
