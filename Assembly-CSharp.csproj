@@ -285,6 +285,7 @@
      <Compile Include="Assets\imported\Bearded Man Studios Inc\Scripts\Networking\Forge\Networking\Objects\IInterpolator.cs" />
      <Compile Include="Assets\imported\Standard Assets\Utility\FOVKick.cs" />
      <Compile Include="Assets\imported\Bearded Man Studios Inc\Scripts\Networking\Forge\Networking\Enums\Receivers.cs" />
+     <Compile Include="Assets\Bearded Man Studios Inc\Generated\NetworkObjectFactory.cs" />
      <Compile Include="Assets\imported\Bearded Man Studios Inc\Scripts\Networking\Concurrency.cs" />
      <Compile Include="Assets\imported\Bearded Man Studios Inc\Scripts\Networking\Forge\Networking\UDPPacket.cs" />
      <Compile Include="Assets\imported\Bearded Man Studios Inc\Scripts\Networking\Forge\Networking\RPCInfo.cs" />

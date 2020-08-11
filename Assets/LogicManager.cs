@@ -10,11 +10,13 @@ public class LogicManager : MonoBehaviour
 {
     public cameraController cam;
     public playerController playerPrefab;
+    public GameObject spawn1;
 
     // Start is called before the first frame update
     void Start()
     {
-        NetworkManager.Instance.InstantiatePlayer(position: new Vector3(0,0,0));
+        spawn1 = GameObject.Find("spawn1");
+        NetworkManager.Instance.InstantiatePlayer(position: spawn1.transform.position);
     }
 
     // Update is called once per frame

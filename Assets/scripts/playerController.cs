@@ -140,6 +140,13 @@ public class playerController : PlayerBehavior
     protected override void NetworkStart()
     {
         base.NetworkStart();
+
+        if (!networkObject.IsServer)
+        {
+            transform.position = spawn2.transform.position;
+        }
+        networkObject.position = transform.position;
+
         if (!networkObject.IsOwner)
         {
             //GetComponent<playerController>().enabled = false;
@@ -149,11 +156,5 @@ public class playerController : PlayerBehavior
         {
             cam.player = this;
         }
-
-        if(!networkObject.IsServer)
-        {
-            transform.position = spawn2.transform.position;
-        }
-        networkObject.position = transform.position;
     }
 }
