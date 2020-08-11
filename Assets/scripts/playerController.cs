@@ -10,7 +10,6 @@ public class playerController : PlayerBehavior
 {
     public float speed;
     public float gravity;
-    public cameraController camPrefab;
     public cameraController cam;
     private Vector3 moveDirection;
     private CharacterController charCon;
@@ -45,8 +44,7 @@ public class playerController : PlayerBehavior
         bodyCollider = GetComponent<CapsuleCollider>();
         Application.targetFrameRate = 30;
         QualitySettings.vSyncCount = 0;
-        cam = Instantiate(camPrefab);
-        cam.player = this;
+        cam = (cameraController)FindObjectOfType(typeof(cameraController));
         spawn1 = GameObject.Find("spawn1");
         spawn2 = GameObject.Find("spawn2");
         transform.position = spawn1.transform.position;
@@ -58,22 +56,24 @@ public class playerController : PlayerBehavior
     void Update()
     {
         if (!hurt && !freeze)
-        {
-            moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-            moveDirection *= speed;
-            if (!charCon.isGrounded)
+        {   if (networkObject.IsOwner)
             {
-                moveDirection += new Vector3(0, -gravity, 0);
-            }
-            charCon.Move(moveDirection * Time.deltaTime);
+                moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+                moveDirection *= speed;
+                if (!charCon.isGrounded)
+                {
+                    moveDirection += new Vector3(0, -gravity, 0);
+                }
+                charCon.Move(moveDirection * Time.deltaTime);
 
-            if (!attacking)
-            {
-                plane = new Plane(Vector3.up, transform.position);
-                Ray ray = cam.GetMouseRay();
-                float hit;
-                plane.Raycast(cam.GetMouseRay(), out hit);
-                transform.LookAt(ray.GetPoint(hit));
+                if (!attacking)
+                {
+                    plane = new Plane(Vector3.up, transform.position);
+                    Ray ray = cam.GetMouseRay();
+                    float hit;
+                    plane.Raycast(cam.GetMouseRay(), out hit);
+                    transform.LookAt(ray.GetPoint(hit));
+                }
             }
 
             if (Input.GetKeyDown(KeyCode.Q))
@@ -142,15 +142,15 @@ public class playerController : PlayerBehavior
         base.NetworkStart();
         if (!networkObject.IsOwner)
         {
-            GetComponent<playerController>().enabled = false;
+            //GetComponent<playerController>().enabled = false;
             Destroy(GetComponent<Rigidbody>());
         }
-
-        if(networkObject.IsServer)
-        {
-            transform.position = spawn1.transform.position;
-        }
         else
+        {
+            cam.player = this;
+        }
+
+        if(!networkObject.IsServer)
         {
             transform.position = spawn2.transform.position;
         }
